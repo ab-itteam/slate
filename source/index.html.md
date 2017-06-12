@@ -3,13 +3,11 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://www.ab-it.io'>Ypsilon is powered by AB-IT</a>
 
 includes:
   - errors
@@ -19,80 +17,56 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Ypsilon API! You can use our API to access Ypsilon API endpoints.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Language binding in node.js & javascript is coming up, stay tuned!
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Every Ypsilon plugin API has its own docs which you can find at http://man.[PLUGINNAME].ypsilon.club.
+
+
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "api.ypsilon.club/auth"
+  -H "Authorization: your_dev_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ypsilon = require('ypsilon');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = ypsilon.authorize('your_dev_key');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_dev_key` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Ypsilon uses API keys to allow access to the API. You can register a new Ypsilon API key at our [developer portal](http://ypsilon.club).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Ypsilon expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: your_dev_key`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_dev_key</code> with your personal API key.
 </aside>
 
-# Kittens
+# Products
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Products
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.ypsilon.club/products"
+  -H "Authorization: your_dev_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ypsilon = require('ypsilon');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let api = kittn.authorize('your_dev_key');
+let products = api.posts.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -116,49 +90,34 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all products from your woocommerce store.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://api.ypsilon.club/products`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+include_trashed | false | If set to true, the result will also include trashed products.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — Authenticate!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Product
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "http://api.ypsilon.club/products/2"
+  -H "Authorization: your_dev_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const ypsilon = require('ypsilon');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = ypsilon.authorize('your_dev_key');
+let product = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -173,17 +132,17 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific prodcuts.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<aside class="warning">If there is no product found the api will return <code>{}</code></aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://api.ypsilon.club/products/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the product to retrieve
 
